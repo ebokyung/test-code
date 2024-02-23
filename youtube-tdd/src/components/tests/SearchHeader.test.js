@@ -16,7 +16,7 @@ describe("SearchHeader", () => {
     expect(screen.getByDisplayValue("bts")).toBeInTheDocument();
   });
 
-  it("navigates to results page on search button click", () => {
+  it("navigates to results page on search button click", async () => {
     const searchKeyword = "fake-keyword";
 
     render(
@@ -32,8 +32,8 @@ describe("SearchHeader", () => {
     const searchButton = screen.getByRole("button");
     const searchInput = screen.getByRole("textbox");
 
-    userEvent.type(searchInput, searchKeyword);
-    userEvent.click(searchButton);
+    await userEvent.type(searchInput, searchKeyword);
+    await userEvent.click(searchButton);
 
     expect(screen.getByText(`Search result for ${searchKeyword}`)).toBeInTheDocument();
   });
