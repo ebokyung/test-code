@@ -30,14 +30,16 @@ describe("ChannelInfo", () => {
 
     renderChannelInfo();
 
-    // waitFor와 getByRole을 조합하는 대신 findByRole 쿼리를 사용하는 것을 권장
+    /* waitFor와 getByRole을 조합하는 대신 findByRole 쿼리를 사용하는 것을 권장
+     * - getBy는 promise 하지 않음 (await x, 요소를 찾으면 바로 리턴하고 못찾으면 에러 던짐)
+     * - findByRole은 promise를 반환
+     */
 
     // as-is
     // await waitFor(() => expect(screen.getByRole("img").toBeInTheDocument()))
 
     // to-be
-    const image = await screen.findByRole("img");
-    await expect(image).toBeInTheDocument();
+    await screen.findByRole("img");
   });
 
   function renderChannelInfo() {

@@ -15,6 +15,9 @@ describe("RelatedVideos", () => {
     fakeYoutube.relatedVideos.mockImplementation(() => fakeVideos);
     const { asFragment } = renderRelatedVideos();
 
+    // as-is -> to-be
+    // screen.getByText() -> screen.queryByText()
+    // : 에러 발생시 더 많은 설명을 받아볼 수 있음
     await waitForElementToBeRemoved(screen.queryByText("Loading..."));
     expect(asFragment()).toMatchSnapshot();
   });
